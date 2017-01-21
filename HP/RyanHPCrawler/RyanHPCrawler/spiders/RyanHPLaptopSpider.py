@@ -140,11 +140,9 @@ class Crawler(scrapy.Spider):
 
         data_list = response.xpath("//table")[0].xpath("//td/text()").extract()
 
+        # Get the price
+        hp_laptop['price'] = response.xpath("//span[@itemprop='price']/text()").extract_first()
+
         self.insert_data(data_list, hp_laptop)
 
         yield hp_laptop
-
-
-
-
-
